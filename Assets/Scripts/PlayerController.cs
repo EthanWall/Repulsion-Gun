@@ -1,0 +1,59 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+
+    CharacterController characterController;
+    new Collider collider;
+
+    public float speed = 6.0f;
+    public float jumpSpeed = 8.0f;
+    public float gravity = Physics.gravity.y;
+    private float vSpeed = 0.0f;
+
+    private Vector3 moveDirection = Vector3.zero;
+
+    private float distToGround;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        characterController = GetComponent<CharacterController>();
+        collider = GetComponent<Collider>();
+        
+        distToGround = collider.bounds.extents.y;
+
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        moveDirection = transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")));
+        moveDirection *= speed;
+
+        if (IsGrounded()) {
+            vSpeed = -1;
+            if (Input.GetButton("Jump")) {
+                vSpeed = jumpSpeed;
+            }
+        }
+
+        vSpeed -= gravity * Time.deltaTime;
+        moveDirection.y = vSpeed;
+
+        characterController.Move(moveDirection * Time.deltaTime);
+
+        if (Input.GetKeyDown("escape")) {
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+    }
+
+    bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
+    }
+}
