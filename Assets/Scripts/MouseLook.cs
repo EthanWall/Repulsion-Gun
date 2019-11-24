@@ -16,7 +16,6 @@ public class MouseLook : MonoBehaviour
     void Start()
     {
         character = this.transform.parent.gameObject;
-        print(character);
     }
 
     // Update is called once per frame
