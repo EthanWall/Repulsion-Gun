@@ -10,17 +10,28 @@ public class RepulsionGun : MonoBehaviour
     public float radius = 1.0f;
     private float charge;
 
+    Rect box = new Rect(10, 10, 100, 20);
+    private Texture2D background;
+    private Texture2D foreground;
+   
     // Start is called before the first frame update
     void Start()
     {
-        
+        background = new Texture2D(1, 1, TextureFormat.RGB24, false);
+        foreground = new Texture2D(1, 1, TextureFormat.RGB24, false);
+       
+        background.SetPixel(0, 0, Color.white);
+        foreground.SetPixel(0, 0, Color.blue);
+       
+        background.Apply();
+        foreground.Apply();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButton("Fire1")) {
-            charge = Mathf.Clamp(charge + Time.deltaTime, 1.0f, 5.0f);
+            charge = Mathf.Clamp(charge + Time.deltaTime * 4.0f, 1.0f, 5.0f);
             print(charge);
         }
 
@@ -49,6 +60,16 @@ public class RepulsionGun : MonoBehaviour
 
             charge = 0.0f;
         }
+    }
+
+    void OnGUI()
+    {
+        GUI.BeginGroup(box);
+        {
+            GUI.DrawTexture(new Rect(0.0f, 0.0f, box.width, box.height), background, ScaleMode.StretchToFill);
+            GUI.DrawTexture(new Rect(0.0f, 0.0f, box.width * charge/5.0f, box.height), foreground, ScaleMode.StretchToFill);
+        }
+        GUI.EndGroup();
     }
 
     private IEnumerator DisplayShotRadius(Vector3 hitPos)

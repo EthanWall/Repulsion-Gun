@@ -38,7 +38,7 @@ public class PickupObject : MonoBehaviour
                 layerMask = ~layerMask;
 
                 RaycastHit hit;
-                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 2.0f, layerMask)) {
+                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 2.5f, layerMask)) {
                     if (hit.collider != null) {
                         item = hit.transform.gameObject;
                         if (item.tag == "Holdable") {
