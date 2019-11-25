@@ -18,14 +18,16 @@ public class Button : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        print("Enter");
-        collidingObjects++;
+        if (other.collider.tag == "Weighted" || other.collider.tag == "WeightedHoldable") {
+            collidingObjects++;
+        }
     }
 
     void OnCollisionExit(Collision other)
     {
-        print("Exit");
-        collidingObjects--;
+        if (other.collider.tag == "Weighted" || other.collider.tag == "WeightedHoldable") {
+            collidingObjects--;
+        }
     }
 
     // Update is called once per frame

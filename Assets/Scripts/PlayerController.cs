@@ -34,8 +34,8 @@ public class PlayerController : MonoBehaviour
         moveDirection = transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")));
         moveDirection *= speed;
 
-        if (IsGrounded()) {
-            vSpeed = -1;
+        if (characterController.isGrounded) {
+            vSpeed = 0;
             if (Input.GetButton("Jump")) {
                 vSpeed = jumpSpeed;
             }
@@ -50,10 +50,5 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-    }
-
-    bool IsGrounded()
-    {
-        return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
     }
 }

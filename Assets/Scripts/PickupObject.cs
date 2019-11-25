@@ -41,7 +41,7 @@ public class PickupObject : MonoBehaviour
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 2.5f, layerMask)) {
                     if (hit.collider != null) {
                         item = hit.transform.gameObject;
-                        if (item.tag == "Holdable") {
+                        if (item.tag == "Holdable" || item.tag == "WeightedHoldable") {
                             Rigidbody rigidbody = item.GetComponent<Rigidbody>();
 
                             rigidbody.useGravity = false;
