@@ -32,18 +32,15 @@ public class RepulsionGun : MonoBehaviour
     {
         if (Input.GetButton("Fire1")) {
             charge = Mathf.Clamp(charge + Time.deltaTime * 4.0f, 1.0f, 5.0f);
-            print(charge);
         }
 
         if (Input.GetButtonUp("Fire1")) {
-            print("Fire!");
-            int layerMask = 1 << 9;
+            LayerMask layerMask = LayerMask.GetMask("Player", "TransparentFX");
             layerMask = ~layerMask;
 
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, layerMask)) {
                 Vector3 hitPos = hit.point;
-                print(hitPos);
 
                 StartCoroutine(DisplayShotRadius(hitPos));
 
@@ -52,7 +49,6 @@ public class RepulsionGun : MonoBehaviour
                     Rigidbody rb = repeledObject.GetComponent<Rigidbody>();
 
                     if (rb != null) {
-                        print(rb);
                         rb.AddExplosionForce(charge * 150.0f, hitPos, radius * charge, 1.0f);
                     }
                     else {
