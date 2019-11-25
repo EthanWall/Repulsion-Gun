@@ -9,11 +9,12 @@ public class PickupObject : MonoBehaviour
     public Transform guide;
     private bool holding = false;
     private GameObject item;
+    private CharacterController characterController;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        characterController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -28,6 +29,7 @@ public class PickupObject : MonoBehaviour
                 rigidbody.isKinematic = false;
                 item.transform.parent = null;
                 item.transform.position = guide.transform.position;
+                rigidbody.velocity = characterController.velocity;
 
                 holding = false;
                 item = null;

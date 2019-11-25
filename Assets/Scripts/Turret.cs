@@ -8,6 +8,8 @@ public class Turret : MonoBehaviour
     public float radius = 4.0f;
     public float rotationSpeed = 1.0f;
     public float fov = 60.0f;
+    public GameObject bullet;
+    public float shootForce = 20.0f;
 
     private Quaternion lookRotation;
     private Vector3 direction;
@@ -26,8 +28,8 @@ public class Turret : MonoBehaviour
         
         Collider closest = null;
         float minDistance = Mathf.Infinity;
+        RaycastHit hit;
         foreach (Collider c in colliders) {
-            RaycastHit hit;
             float distance = Vector3.Distance(transform.position, c.transform.position);
             float angle = Vector3.Angle(c.transform.position - transform.position, transform.forward);
             if (distance < minDistance && angle <= fov && Physics.Linecast(transform.position, c.transform.position, out hit) && hit.collider.transform == c.transform) {
@@ -37,10 +39,9 @@ public class Turret : MonoBehaviour
         }
 
         if (closest != null) {
-            //direction = (closest.transform.position - transform.position).normalized;
-            //lookRotation = Quaternion.LookRotation(direction);
-            //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-            print(closest);
+            GameObject instantiatedBullet = Instantiate(bullet, transform.position, Quaternion.LookRotation((closest.transform.position - transform.position).normalized));
+            Rigidbody rigidbody = instantiatedBullet.GetComponent<Rigidbody>();
+            rigidbody.AddForce(instantiatedBullet.transform.forward * shootForce);
         }
     }
 }
