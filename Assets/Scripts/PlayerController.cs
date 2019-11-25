@@ -6,11 +6,11 @@ public class PlayerController : MonoBehaviour
 {
 
     CharacterController characterController;
-    new Collider collider;
+    new private Collider collider;
 
     public float speed = 6.0f;
     public float jumpSpeed = 8.0f;
-    public float gravity = Physics.gravity.y;
+    public float gravity = 20.0f;
     private float vSpeed = 0.0f;
 
     private Vector3 moveDirection = Vector3.zero;

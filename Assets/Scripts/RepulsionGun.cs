@@ -55,6 +55,15 @@ public class RepulsionGun : MonoBehaviour
                         print(rb);
                         rb.AddExplosionForce(charge * 150.0f, hitPos, radius * charge, 1.0f);
                     }
+                    else {
+                        ImpactReciever impactReciever = repeledObject.GetComponent<ImpactReciever>();
+
+                        if (impactReciever) {
+                            Vector3 dir = repeledObject.transform.position - hitPos;
+                            //float force = Mathf.Clamp((charge * 150.0f) / 3.0f, 0.0f, 100.0f);
+                            impactReciever.AddImpact(dir, charge * 20.0f);
+                        }
+                    }
                 }
             }
 
@@ -67,7 +76,7 @@ public class RepulsionGun : MonoBehaviour
         GUI.BeginGroup(box);
         {
             GUI.DrawTexture(new Rect(0.0f, 0.0f, box.width, box.height), background, ScaleMode.StretchToFill);
-            GUI.DrawTexture(new Rect(0.0f, 0.0f, box.width * charge/5.0f, box.height), foreground, ScaleMode.StretchToFill);
+            GUI.DrawTexture(new Rect(0.0f, 0.0f, box.width * charge / 5.0f, box.height), foreground, ScaleMode.StretchToFill);
         }
         GUI.EndGroup();
     }
