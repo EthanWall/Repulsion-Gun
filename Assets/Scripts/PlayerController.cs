@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
         distToGround = collider.bounds.extents.y;
 
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown("escape")) {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
     }

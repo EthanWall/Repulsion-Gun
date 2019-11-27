@@ -39,9 +39,18 @@ public class Turret : MonoBehaviour
         }
 
         if (closest != null) {
-            GameObject instantiatedBullet = Instantiate(bullet, transform.position, Quaternion.LookRotation((closest.transform.position - transform.position).normalized));
-            Rigidbody rigidbody = instantiatedBullet.GetComponent<Rigidbody>();
-            rigidbody.AddForce(instantiatedBullet.transform.forward * shootForce);
+            StartCoroutine(Shoot(closest));
         }
+    }
+
+    private IEnumerator Shoot(Collider target)
+    {
+        GameObject instantiatedBullet = Instantiate(bullet, transform.position, Quaternion.LookRotation((target.transform.position - transform.position).normalized));
+        Rigidbody rigidbody = instantiatedBullet.GetComponent<Rigidbody>();
+        rigidbody.AddForce(instantiatedBullet.transform.forward * shootForce);
+
+        yield return new WaitForSeconds(5.0f);
+
+        Destroy(instantiatedBullet);
     }
 }
