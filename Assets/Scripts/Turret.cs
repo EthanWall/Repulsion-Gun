@@ -1,56 +1,82 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
 
-    public float radius = 4.0f;
-    public float rotationSpeed = 1.0f;
-    public float fov = 60.0f;
-    public GameObject bullet;
-    public float shootForce = 20.0f;
-
-    private Quaternion lookRotation;
-    private Vector3 direction;
+    public GameObject[] guns;
+    public Light[] lights;
+    public Transform detectorOrigin;
+    public AudioSource fireAudioSource;
+    public float radius;
+    public float damage;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(Live());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator Live()
+    {
+        while (true) {
+
+            yield return new WaitForSeconds(0.2f);
+
+            GameObject target = findNearestTarget();
+            if (target != null) {
+                //print(target);
+                foreach (GameObject launcher in guns) {
+                    //Rotate guns
+                    Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - launcher.transform.position);
+                    targetRotation.x = 0.0f;
+                    targetRotation.z = 0.0f;
+                    launcher.transform.rotation = targetRotation;
+
+                    StartCoroutine(Shoot(launcher.transform, lights[Array.FindIndex(guns, row => row == launcher)]));
+
+                }
+            }
+        }
+    }
+
+    private GameObject findNearestTarget()
     {
         LayerMask layerMask = LayerMask.GetMask("Player");
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, layerMask);
-        
-        Collider closest = null;
+        Collider[] objectsInRange = Physics.OverlapSphere(detectorOrigin.position, radius, layerMask);
+        GameObject target = null;
         float minDistance = Mathf.Infinity;
-        RaycastHit hit;
-        foreach (Collider c in colliders) {
-            float distance = Vector3.Distance(transform.position, c.transform.position);
-            float angle = Vector3.Angle(c.transform.position - transform.position, transform.forward);
-            if (distance < minDistance && angle <= fov && Physics.Linecast(transform.position, c.transform.position, out hit) && hit.collider.transform == c.transform) {
+        foreach (Collider possibleTarget in objectsInRange) {
+            float distance = Vector3.Distance(transform.position, possibleTarget.transform.position);
+            if (distance < minDistance) {
                 minDistance = distance;
-                closest = c;
+                target = possibleTarget.gameObject;
             }
         }
 
-        if (closest != null) {
-            StartCoroutine(Shoot(closest));
-        }
+        return target;
     }
 
-    private IEnumerator Shoot(Collider target)
+    private IEnumerator Shoot(Transform origin, Light flash)
     {
-        GameObject instantiatedBullet = Instantiate(bullet, transform.position, Quaternion.LookRotation((target.transform.position - transform.position).normalized));
-        Rigidbody rigidbody = instantiatedBullet.GetComponent<Rigidbody>();
-        rigidbody.AddForce(instantiatedBullet.transform.forward * shootForce);
+        RaycastHit hit;
+        if (Physics.Raycast(origin.position, origin.forward, out hit, Mathf.Infinity))
+        {
+            GameObject target = hit.collider.gameObject;
+            HealthHandler handler = target.GetComponent<HealthHandler>();
 
-        yield return new WaitForSeconds(5.0f);
+            if (handler != null) {
+                handler.Damage(damage);
 
-        Destroy(instantiatedBullet);
+                flash.enabled = true;
+                yield return new WaitForSeconds(0.1f);
+                flash.enabled = false;
+            }
+
+            //Play the sound
+            fireAudioSource.Play();
+        }
     }
 }

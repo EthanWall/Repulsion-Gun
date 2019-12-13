@@ -41,19 +41,17 @@ public class PickupObject : MonoBehaviour
 
                 RaycastHit hit;
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 2.5f, layerMask)) {
-                    if (hit.collider != null) {
-                        item = hit.transform.gameObject;
-                        if (item.tag == "Holdable" || item.tag == "WeightedHoldable") {
-                            Rigidbody rigidbody = item.GetComponent<Rigidbody>();
+                    item = hit.transform.gameObject;
+                    if (item.tag == "Holdable" || item.tag == "WeightedHoldable") {
+                        Rigidbody rigidbody = item.GetComponent<Rigidbody>();
 
-                            rigidbody.useGravity = false;
-                            rigidbody.isKinematic = true;
-                            item.transform.position = guide.transform.position;
-                            item.transform.rotation = guide.transform.rotation;
-                            item.transform.parent = tempParent.transform;
+                        rigidbody.useGravity = false;
+                        rigidbody.isKinematic = true;
+                        item.transform.position = guide.transform.position;
+                        item.transform.rotation = guide.transform.rotation;
+                        item.transform.parent = tempParent.transform;
 
-                            holding = true;
-                        }
+                        holding = true;
                     }
                 }
             }

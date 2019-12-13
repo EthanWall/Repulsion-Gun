@@ -16,14 +16,6 @@ public class HealthHandler : MonoBehaviour
         health = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (health <= 0.0f) {
-            Kill();
-        }
-    }
-
     void OnGUI()
     {
         GUI.Label(box, "Health: " + health.ToString(), style);
@@ -31,17 +23,24 @@ public class HealthHandler : MonoBehaviour
 
     public void Damage(float damage)
     {
-        print("oof");
         health = Mathf.Clamp(health - damage, 0.0f, maxHealth);
+
+        if (health <= 0.0f) {
+            Kill();
+        }
     }
 
     public void Heal(float damage)
     {
         health = Mathf.Clamp(health + damage, 0.0f, maxHealth);
+
+        if (health <= 0.0f) {
+            Kill();
+        }
     }
 
     public void Kill()
     {
-        print("Dead");
+        
     }
 }

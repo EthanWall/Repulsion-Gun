@@ -21,7 +21,6 @@ public class Bullet : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
-        print("yeet");
         HealthHandler handler = other.gameObject.GetComponent<HealthHandler>();
         if (handler != null) {
             handler.Damage(damage);
