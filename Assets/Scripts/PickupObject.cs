@@ -29,6 +29,8 @@ public class PickupObject : MonoBehaviour
                 rigidbody.isKinematic = false;
                 item.transform.parent = null;
                 item.transform.position = guide.transform.position;
+
+                //Add velocity
                 rigidbody.velocity = characterController.velocity;
 
                 holding = false;

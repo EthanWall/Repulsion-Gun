@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Activator))]
 public class Button : MonoBehaviour
 {
 
@@ -9,11 +10,13 @@ public class Button : MonoBehaviour
     private int collidingObjects;
     public Material offMaterial;
     public Material onMaterial;
+    private Activator activator;
 
     // Start is called before the first frame update
     void Start()
     {
         renderer = GetComponent<Renderer>();
+        activator = GetComponent<Activator>();
     }
 
     void OnCollisionEnter(Collision other)
@@ -35,9 +38,11 @@ public class Button : MonoBehaviour
     {
         if (collidingObjects > 0) {
             renderer.material = onMaterial;
+            activator.on = true;
         }
         else {
             renderer.material = offMaterial;
+            activator.on = false;
         }
     }
 }
