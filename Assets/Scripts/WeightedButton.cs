@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Activator))]
-public class Button : MonoBehaviour
+public class WeightedButton : MonoBehaviour
 {
 
     new private Renderer renderer;

@@ -1932,7 +1932,7 @@ PrefabInstance:
     - target: {fileID: 158371550421953189, guid: d2ab52b8e22e74046b80918ed570d1dd,
         type: 3}
       propertyPath: m_Name
-      value: Button
+      value: WeightedButton
       objectReference: {fileID: 0}
     - target: {fileID: 158371550421953209, guid: d2ab52b8e22e74046b80918ed570d1dd,
         type: 3}
@@ -1991,6 +1991,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2ab52b8e22e74046b80918ed570d1dd, type: 3}
+--- !u!1001 &1143080280731110314
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1143080282560791525, guid: 3f1cfd1bfa30e6444ad83509f2b5521d,
+        type: 3}
+      propertyPath: m_Name
+      value: PushButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143080282560791545, guid: 3f1cfd1bfa30e6444ad83509f2b5521d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143080282560791545, guid: 3f1cfd1bfa30e6444ad83509f2b5521d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143080282560791545, guid: 3f1cfd1bfa30e6444ad83509f2b5521d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143080282560791545, guid: 3f1cfd1bfa30e6444ad83509f2b5521d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143080282560791545, guid: 3f1cfd1bfa30e6444ad83509f2b5521d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143080282560791545, guid: 3f1cfd1bfa30e6444ad83509f2b5521d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143080282560791545, guid: 3f1cfd1bfa30e6444ad83509f2b5521d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143080282560791545, guid: 3f1cfd1bfa30e6444ad83509f2b5521d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143080282560791545, guid: 3f1cfd1bfa30e6444ad83509f2b5521d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143080282560791545, guid: 3f1cfd1bfa30e6444ad83509f2b5521d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143080282560791545, guid: 3f1cfd1bfa30e6444ad83509f2b5521d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3f1cfd1bfa30e6444ad83509f2b5521d, type: 3}
 --- !u!1001 &2846664939990253749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2129,3 +2198,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c393b88d00b2314f923e7565c64bb61, type: 3}
+--- !u!1 &4808849118331503308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4808849118175160453, guid: 4c393b88d00b2314f923e7565c64bb61,
+    type: 3}
+  m_PrefabInstance: {fileID: 4808849118331503307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4808849118331503309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4808849118331503308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89baba7349ad3d4e95d43288de4840e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minZoom: 60
+  maxZoom: 20
