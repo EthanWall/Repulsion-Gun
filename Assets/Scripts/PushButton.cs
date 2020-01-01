@@ -6,6 +6,7 @@ using UnityEngine;
 public class PushButton : MonoBehaviour
 {
 
+    public float delay = 1.0f;
     new private Renderer renderer;
     private bool pushed;
     public Material offMaterial;
@@ -37,7 +38,7 @@ public class PushButton : MonoBehaviour
         activator.on = true;
         pushed = true;
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(delay);
 
         renderer.material = offMaterial;
         activator.on = false;
