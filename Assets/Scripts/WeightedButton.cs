@@ -21,7 +21,7 @@ public class WeightedButton : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.collider.tag == "Weighted" || other.collider.tag == "WeightedHoldable") {
+        if (other.collider.tag == "Weighted" || other.collider.tag == "WeightedHoldable" || other.collider.tag == "Player") {
             collidingObjects++;
         }
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 158371550421953211}
   - component: {fileID: 158371550421953188}
   m_Layer: 0
-  m_Name: Button
+  m_Name: WeightedButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,6 +56,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -108,6 +109,7 @@ GameObject:
   - component: {fileID: 158371550848114828}
   - component: {fileID: 158371550848114816}
   - component: {fileID: 304318056}
+  - component: {fileID: 666617176}
   m_Layer: 0
   m_Name: Activator
   m_TagString: Untagged
@@ -151,6 +153,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -196,7 +199,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158371550848114829}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aad6e202268c2bc49920c7526581dcc1, type: 3}
   m_Name: 
@@ -216,3 +219,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   on: 0
+--- !u!114 &666617176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158371550848114829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b700d77296175954f9bfc03ac320bbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offMaterial: {fileID: 2100000, guid: 32febe93d43e1eb4391e9723ed39c501, type: 2}
+  onMaterial: {fileID: 2100000, guid: 16ccadd29044c834dba7d5db9b2dddba, type: 2}
